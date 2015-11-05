@@ -15,7 +15,7 @@ from rentswatch_scraper import __version__
 setup(
     name='rentswatch-scraper',
     version=__version__,
-    description='an incredible python package',
+    description='A basic framework to scrap rent advertisings',
     long_description='',
     keywords='',
     author='pirhoo',
