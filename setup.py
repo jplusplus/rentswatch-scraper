@@ -11,25 +11,12 @@
 from setuptools import setup, find_packages
 from rentswatch_scraper import __version__
 
-tests_require = [
-    'mock',
-    'nose',
-    'coverage',
-    'yanc',
-    'preggy',
-    'tox',
-    'ipdb',
-    'coveralls',
-    'sphinx',
-]
 
 setup(
     name='rentswatch-scraper',
     version=__version__,
     description='an incredible python package',
-    long_description='''
-an incredible python package
-''',
+    long_description='',
     keywords='',
     author='pirhoo',
     author_email='hello@pirhoo.com',
@@ -49,11 +36,13 @@ an incredible python package
     packages=find_packages(),
     include_package_data=False,
     install_requires=[
-        # add your dependencies here
-        # remember to use 'package-name>=x.y.z,<x.y+1.0' notation (this way you get bugfixes)
+        'SQLObject==2.1.2',
+        'beautifulsoup4==4.4.0',
+        'requests==2.2.1',
+        'MySQL-python==1.2.3'
     ],
     extras_require={
-        'tests': tests_require,
+        'tests': [],
     },
     entry_points={
         'console_scripts': [
