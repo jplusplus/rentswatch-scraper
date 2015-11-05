@@ -4,6 +4,15 @@
 # Licensed under the LGPL license:
 # http://www.opensource.org/licenses/LGPL-license
 # Copyright (c) 2015, pirhoo <hello@pirhoo.com>
+VENV = venv
+ENV = venv/bin/activate
+DOCKER_NAME = rentswatch-scraper
+DOCKER_AUTHOR = pirhoo
+
+$(VENV):
+	virtualenv venv --no-site-packages --distribute --prompt=rentswatch
+
+install: $(VENV)
 
 # lists all available targets
 list:
