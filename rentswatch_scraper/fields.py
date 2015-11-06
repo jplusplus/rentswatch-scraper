@@ -2,6 +2,7 @@ from .browser import regex as fast_regex
 
 import itertools
 import abc
+import reporting
 
 class Field(object):
     __metaclass__ = abc.ABCMeta
