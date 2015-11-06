@@ -23,3 +23,6 @@ no_targets__:
 # install all dependencies (do not forget to create a virtualenv first)
 setup:
 	@pip install -U -e .\[tests\]
+
+publish:
+	python setup.py register sdist upload
