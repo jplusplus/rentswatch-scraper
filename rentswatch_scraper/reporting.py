@@ -3,6 +3,8 @@ from exceptions import ValueError
 
 import db
 
+dupCount = 0
+
 class ReportError(Exception):
     def __init__(self, country, site, siteId):
         Exception.__init__(self)
