@@ -23,6 +23,7 @@ import reporting
 import db
 import socket
 import pprint
+import browser
 
 class Scraper(object):
 
@@ -34,7 +35,7 @@ class Scraper(object):
         baseUrl  = ''
         listUrl  = ''
         # CSS selector to retreive an ad's block
-        adBlockSelector = '.detail-page-link'
+        adlockSelector = '.detail-page-link'
 
     def __init__(self, max_page=20, debug=False):
         # Setup database table
@@ -89,7 +90,7 @@ class Scraper(object):
 
     def find_ad_blocks(self, soup):
         # By default we consider the ad block is a link
-        return soup.select(self._meta.adBlockSelector)
+        return soup.select(self._meta.adlockSelector)
 
     def get_fields(self):
         return ( (m, getattr(self, m) ) for m in self._fields )
