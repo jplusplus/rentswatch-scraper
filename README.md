@@ -44,7 +44,7 @@ class DummyScraper(Scraper):
 
 Without any further configuration, this scraper will start to collect ads from
 the list page of `dummy.io`. To find links to the ads, it will use the CSS
-selector `.ad-page-link` to find `<a>` markups and follow they `href` attributes.
+selector `.ad-page-link` to get `<a>` markups and follow their `href` attributes.
 
 We have now to teach the scraper how to extract key figures from the ad page.
 
@@ -76,7 +76,6 @@ a second field type named `ComputedField`. Since the properties order of
 declaration is recorded, we can use previously declared (and extracted) values
 to compute new ones.
 
-
 ```python
 class DummyScraper(Scraper):
     # ...
@@ -93,3 +92,39 @@ class DummyScraper(Scraper):
     latitude = ComputedField(fn=lambda s, values: values['_latLng']['lat'])
     longitude = ComputedField(fn=lambda s, values: values['_latLng']['lng'])
 ```
+
+All you need to do now is to create an instance of your class and run the scraper.
+
+```python
+# When you script is executed directly
+if __name__ == "__main__":
+  dummyScraper = DummyScraper()
+  dummyScraper.run()
+```
+
+## API Doc
+
+### `class` Scraper
+
+#### Methods
+
+The Scraper class defines a lot of method that we encourage you to redefine in
+order to have the full control of your scraper behavior.
+
+Name | Description
+--- | ---
+extract_ad | Extract ads list from a page's soup.
+fail | Print out an error message.
+fetch_ad | Fetch a single ad page from the target website then create Ad instances by calling `èxtract_ad`.
+fetch_series | Fetch a single list page from the target website then fetch an ad by calling `fetch_ad`.
+find_ad_blocks | Extract ad block from a page list. Called within `fetch_series`.
+get_ad_href | Extract a href attribute from an ad block. . Called within `fetch_series`.
+get_ad_id | Extract a siteId from an ad block. Called within `fetch_series`.
+get_fields | Used internally to generate a list of property to extract from the ad.
+get_series | Fetch a list page from the target website.
+has_issue | True if we met issues with this ad before.
+is_scraped | True if we already scraped this ad before.
+ok | Print out an success message.
+prepare | Just before saving the values.
+run | Run the scrapper.
+transform_page | Transform HTML content of the series page before parsing it.
