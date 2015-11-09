@@ -4,3 +4,4 @@
 # Licensed under the LGPL license:
 # http://www.opensource.org/licenses/LGPL-license
 # Copyright (c) 2015, pirhoo <hello@pirhoo.com>
+include README.rst

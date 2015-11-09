@@ -11,11 +11,15 @@
 from setuptools import setup, find_packages
 from rentswatch_scraper import __version__
 
+def readme():
+    with open('README.rst') as f:
+        return f.read()
 
 setup(
     name='rentswatch-scraper',
     version=__version__,
     description='A basic framework to scrap renting ads',
+    long_description=readme(),
     keywords='',
     author='pirhoo',
     author_email='hello@pirhoo.com',
@@ -33,7 +37,7 @@ setup(
         'Operating System :: OS Independent',
     ],
     packages=find_packages(),
-    include_package_data=False,
+    include_package_data=True,
     install_requires=[
         'SQLObject==2.1.2',
         'beautifulsoup4==4.4.0',
