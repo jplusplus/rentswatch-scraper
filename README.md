@@ -113,18 +113,18 @@ order to have the full control of your scraper behavior.
 
 Name | Description
 --- | ---
-extract_ad | Extract ads list from a page's soup.
-fail | Print out an error message.
-fetch_ad | Fetch a single ad page from the target website then create Ad instances by calling `èxtract_ad`.
-fetch_series | Fetch a single list page from the target website then fetch an ad by calling `fetch_ad`.
-find_ad_blocks | Extract ad block from a page list. Called within `fetch_series`.
-get_ad_href | Extract a href attribute from an ad block. . Called within `fetch_series`.
-get_ad_id | Extract a siteId from an ad block. Called within `fetch_series`.
-get_fields | Used internally to generate a list of property to extract from the ad.
-get_series | Fetch a list page from the target website.
-has_issue | True if we met issues with this ad before.
-is_scraped | True if we already scraped this ad before.
-ok | Print out an success message.
-prepare | Just before saving the values.
-run | Run the scrapper.
-transform_page | Transform HTML content of the series page before parsing it.
+`extract_ad` | Extract ads list from a page's soup.
+`fail` | Print out an error message.
+`fetch_ad` | Fetch a single ad page from the target website then create Ad instances by calling `èxtract_ad`.
+`fetch_series` | Fetch a single list page from the target website then fetch an ad by calling `fetch_ad`.
+`find_ad_blocks` | Extract ad block from a page list. Called within `fetch_series`.
+`get_ad_href` | Extract a href attribute from an ad block. . Called within `fetch_series`.
+`get_ad_id` | Extract a siteId from an ad block. Called within `fetch_series`.
+`get_fields` | Used internally to generate a list of property to extract from the ad.
+`get_series` | Fetch a list page from the target website.
+`has_issue` | True if we met issues with this ad before.
+`is_scraped` | True if we already scraped this ad before.
+`ok` | Print out an success message.
+`prepare` | Just before saving the values.
+`run` | Run the scrapper.
+`transform_page` | Transform HTML content of the series page before parsing it.
