@@ -16,7 +16,6 @@ setup(
     name='rentswatch-scraper',
     version=__version__,
     description='A basic framework to scrap renting ads',
-    long_description='',
     keywords='',
     author='pirhoo',
     author_email='hello@pirhoo.com',
