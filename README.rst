@@ -94,7 +94,7 @@ declared (and extracted) values to compute new ones.
         pricePerSqm = ComputedField(fn=lambda s, values: values["totalRent"] / values["livingSpace"])
         # This full exemple use private properties to find latitude and longitude.
         # To do so we use a buid-in function named `convert` that transforms an
-        # address into a dictionary of coordinates.  
+        # address into a dictionary of coordinates.
         _latLng = ComputedField(fn=lambda s, values: geocode(values['_address'], 'FRA') )
         # Gets a the dictionary field we want.
         latitude = ComputedField(fn=lambda s, values: values['_latLng']['lat'])
@@ -112,6 +112,50 @@ the scraper.
 
 API Doc
 -------
+
+``class`` Ad
+~~~~~~~~~~~~
+
+Attributes
+^^^^^^^^^^
+
+As seen above, every Ad attribute might be used as a Scraper attribute to declare which attribute extract.
+
++----------------------+--------------------------+---------------------------------------------------------------------------+
+| Name                 | Type                     | Description                                                               |
++======================+==========================+===========================================================================+
+| ``status``           | *String*                 | "listed" if needs more scraping, "scraped" if it's done                   |
+| ``site``             | *String*                 | Name of the website                                                       |
+| ``createdAt``        | *DateTime*               | Date the ad was first scraped                                             |
+| ``siteId``           | *String*                 | The unique ID from the site where it's scrapped from                      |
+| ``serviceCharge``    | *Float*                  | Extra costs (heating mostly)                                              |
+| ``baseRent``         | *Float*                  | Base costs (without heating)                                              |
+| ``totalRent``        | *Float*                  | Total cost                                                                |
+| ``livingSpace``      | *Float*                  | Surface in square meters                                                  |
+| ``pricePerSqm``      | *Float*                  | Price per square meter                                                    |
+| ``furnished``        | *Bool*                   | True if the flat or house is furnished                                    |
+| ``realtor``          | *Bool*                   | True if realtor, n if rented by a physical person                         |
+| ``realtorName``      | *Unicode*                | The name of the realtor or person offering the flat                       |
+| ``latitude``         | *Float*                  | Latitude                                                                  |
+| ``longitude``        | *Float*                  | Longitude                                                                 |
+| ``balcony``          | *Bool*                   | True if there is a balcony/terrasse                                       |
+| ``yearConstructed``  | *String*                 | The year the building was built                                           |
+| ``cellar``           | *Bool*                   | True if the flat comes with a cellar                                      |
+| ``parking``          | *Bool*                   | True if the flat comes with a parking or a garage                         |
+| ``houseNumber``      | *String*                 | House Number in the street                                                |
+| ``street``           | *String*                 | Street name (incl. "street")                                              |
+| ``zipCode``          | *String*                 | ZIP code                                                                  |
+| ``city``             | *Unicode*                | City                                                                      |
+| ``lift``             | *Bool*                   | True if a lift is present                                                 |
+| ``typeOfFlat``       | *String*                 | Type of flat (no typology)                                                |
+| ``noRooms``          | *String*                 | Number of rooms                                                           |
+| ``floor``            | *String*                 | Floor the flat is at                                                      |
+| ``garden``           | *Bool*                   | True if there is a garden                                                 |
+| ``barrierFree``      | *Bool*                   | True if the flat is wheelchair accessible                                 |
+| ``country``          | *String*                 | Country, 2 letter code                                                    |
+| ``sourceUrl``        | *String*                 | URL of the page                                                           |
++======================+==========================+===========================================================================+
+
 
 ``class`` Scraper
 ~~~~~~~~~~~~~~~~~
@@ -155,4 +199,3 @@ redefine in order to have the full control of your scraper behavior.
 +----------------------+------------------------------------------------------------------------------------------------------+
 | ``transform_page``   | Transform HTML content of the series page before parsing it.                                         |
 +----------------------+------------------------------------------------------------------------------------------------------+
-
