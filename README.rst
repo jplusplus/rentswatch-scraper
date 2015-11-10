@@ -154,7 +154,7 @@ As seen above, every Ad attribute might be used as a Scraper attribute to declar
 | ``barrierFree``      | *Bool*                   | True if the flat is wheelchair accessible                                 |
 | ``country``          | *String*                 | Country, 2 letter code                                                    |
 | ``sourceUrl``        | *String*                 | URL of the page                                                           |
-+======================+==========================+===========================================================================+
++----------------------+------------------------------------------------------------------------------------------------------+
 
 
 ``class`` Scraper
