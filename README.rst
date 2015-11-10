@@ -2,9 +2,7 @@ Rentswatch Scraper Framework
 ============================
 
 This package provides an easy and maintenable way to build a
-Rentswatch's scraper. Rentswatch is a cross-borders investigation aiming
-to collect data around flat renting in Europe. Its scrapers mainly focus
-on adverts.
+Rentswatch scraper. Rentswatch is a cross-borders investigation that collects data on flat rents in Europe. Its scrapers mainly focus on classified ads.
 
 How to install
 --------------
@@ -21,7 +19,7 @@ How to use
 Let's take a look at a quick example of using Rentswatch Scraper to
 build a simple model-backed scraper to collect data from a website.
 
-First, you may import the package components to build your scraper:
+First, import the package components to build your scraper:
 
 .. code:: python
 
@@ -74,7 +72,7 @@ page.
         # It won't be saved in the database but it can be helpful as you we'll see.
         _address = RegexField('.description-address')
 
-Every attribute will be saved as a Ad's property, according to the Ad
+Every attribute will be saved as an Ad's property, according to the Ad
 model.
 
 Some properties may not be extractable from the HTML. You may need to
@@ -92,7 +90,7 @@ declared (and extracted) values to compute new ones.
         # Use existing properties `totalRent` and `livingSpace` as they were
         # extracted before this one.
         pricePerSqm = ComputedField(fn=lambda s, values: values["totalRent"] / values["livingSpace"])
-        # This full exemple use private properties to find latitude and longitude.
+        # This full exemple uses private properties to find latitude and longitude.
         # To do so we use a buid-in function named `convert` that transforms an
         # address into a dictionary of coordinates.
         _latLng = ComputedField(fn=lambda s, values: geocode(values['_address'], 'FRA') )
@@ -208,7 +206,7 @@ redefine in order to have the full control of your scraper behavior.
 +----------------------+------------------------------------------------------------------------------------------------------+
 | ``find_ad_blocks``   | Extract ad block from a page list. Called within ``fetch_series``.                                   |
 +----------------------+------------------------------------------------------------------------------------------------------+
-| ``get_ad_href``      | Extract a href attribute from an ad block. . Called within ``fetch_series``.                         |
+| ``get_ad_href``      | Extract a href attribute from an ad block. Called within ``fetch_series``.                         |
 +----------------------+------------------------------------------------------------------------------------------------------+
 | ``get_ad_id``        | Extract a siteId from an ad block. Called within ``fetch_series``.                                   |
 +----------------------+------------------------------------------------------------------------------------------------------+
