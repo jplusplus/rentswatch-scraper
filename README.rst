@@ -206,7 +206,7 @@ redefine in order to have the full control of your scraper behavior.
 +----------------------+------------------------------------------------------------------------------------------------------+
 | ``find_ad_blocks``   | Extract ad block from a page list. Called within ``fetch_series``.                                   |
 +----------------------+------------------------------------------------------------------------------------------------------+
-| ``get_ad_href``      | Extract a href attribute from an ad block. Called within ``fetch_series``.                         |
+| ``get_ad_href``      | Extract a href attribute from an ad block. Called within ``fetch_series``.                           |
 +----------------------+------------------------------------------------------------------------------------------------------+
 | ``get_ad_id``        | Extract a siteId from an ad block. Called within ``fetch_series``.                                   |
 +----------------------+------------------------------------------------------------------------------------------------------+
