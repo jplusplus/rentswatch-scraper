@@ -6,6 +6,9 @@ import os
 # Get DATABASE_URL env variable or use sqlite
 DATABASE_URL = os.environ.get('DATABASE_URL', "sqlite://%s" % os.path.abspath("dev.db") )
 REPORT_NAMES = ('duplicate', 'bogus', 'rent-missing', 'space-missing', 'timeout', 'wrong-type')
+# Establish the connection
+connection = connectionForURI(DATABASE_URL)
+connection.dbEncoding="utf8"
 
 def setup(databaseUrl=DATABASE_URL):
     # Establish the connection
