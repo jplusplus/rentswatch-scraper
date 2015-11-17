@@ -8,4 +8,4 @@
 # http://www.opensource.org/licenses/LGPL-license
 # Copyright (c) 2015, pirhoo <hello@pirhoo.com>
 
-__version__ = '0.13.0'  # NOQA
+__version__ = '0.14.0'  # NOQA
