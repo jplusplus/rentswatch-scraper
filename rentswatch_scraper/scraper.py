@@ -83,10 +83,10 @@ class Scraper(object):
         except KeyboardInterrupt: print '\nThanks, have a nice day!'
 
     def ok(self, string):
-        print '[SUCCESS] ' % string
+        print u'\033[92m%s\033[0m' % string
 
     def fail(self, string):
-        print '[ERROR] ' % string
+        print u'\033[91m%s\033[0m' % string
 
     def find_ad_blocks(self, soup):
         # By default we consider the ad block is a link
@@ -144,7 +144,7 @@ class Scraper(object):
                 # Fetch the ad
                 ad, values = self.fetch_ad(href, siteId)
                 # Inform the user
-                self.ok(u"✔ Ad %s scraped." % siteId)
+                self.ok(u"[SUCCESS] Ad %s scraped." % siteId)
                 # Print out the extracted values in debug mode
                 if self._debug: self._pp.pprint(values)
             # Cache common errors
@@ -152,7 +152,7 @@ class Scraper(object):
                 # Simply save the report
                 e.save()
                 # Inform the user
-                self.fail(u"✖ Ad %s was wrong: %s." % (siteId, e.name))
+                self.fail(u"[ERROR] Ad %s was wrong: %s." % (siteId, e.name))
                 # And continue to the next ad
                 continue
 
