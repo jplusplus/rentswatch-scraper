@@ -83,10 +83,10 @@ class Scraper(object):
         except KeyboardInterrupt: print '\nThanks, have a nice day!'
 
     def ok(self, string):
-        print '\033[92m%s\033[0m' % string
+        print u'\033[92m%s\033[0m' % string.encode("utf-8")
 
     def fail(self, string):
-        print '\033[91m%s\033[0m' % string
+        print u'\033[91m%s\033[0m' % string.encode("utf-8")
 
     def find_ad_blocks(self, soup):
         # By default we consider the ad block is a link
