@@ -20,7 +20,7 @@ class Field(object):
 
 class RegexField(Field):
 
-    def __init__(self, selector, regex=None, transform=None, html=False,
+    def __init__(self, selector=None, regex=None, transform=None, html=False,
                 required=False, exception=reporting.BogusError):
         self.selector  = selector
         self.regex     = regex
@@ -30,12 +30,16 @@ class RegexField(Field):
         super(RegexField, self).__init__(required, exception)
 
     def extract(self, soup, values):
-        # Extract the element containing
-        element = soup.select_one(self.selector)
-        # Element not found
-        if element is None: return None
-        # Should we extract value as html or text?
-        value = element if self.html else element.text.encode('utf-8')
+        # Parse page HTML using a selector
+        if self.selector is not None:
+            # Extract the element containing
+            element = soup.select_one(self.selector)
+            # Element not found
+            if element is None: return None
+            # Should we extract value as html or text?
+            value = element if self.html else element.text.encode('utf-8')
+        # No selector provided the soup might be just text
+        else: value = soup.encode('utf-8')
         # Should we apply a regex to extract the value
         value = value if self.regex is None else fast_regex(self.regex, value)
         # Strip extracted values
