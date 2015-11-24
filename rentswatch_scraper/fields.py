@@ -36,10 +36,10 @@ class RegexField(Field):
             element = soup.select_one(self.selector)
             # Element not found
             if element is None: return None
-            # Should we extract value as html or text?
-            value = element if self.html else element.text.encode('utf-8')
         # No selector provided the soup might be just text
-        else: value = soup.encode('utf-8')
+        else: value = soup
+        # Should we extract value as html or text?
+        value = element if self.html else element.text.encode('utf-8')
         # Should we apply a regex to extract the value
         value = value if self.regex is None else fast_regex(self.regex, value)
         # Strip extracted values
