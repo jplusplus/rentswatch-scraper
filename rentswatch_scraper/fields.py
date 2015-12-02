@@ -37,7 +37,7 @@ class RegexField(Field):
             # Element not found
             if element is None: return None
         # No selector provided the soup might be just text
-        else: value = soup
+        else: element = soup
         # Should we extract value as html or text?
         value = element if self.html else element.text.encode('utf-8')
         # Should we apply a regex to extract the value
