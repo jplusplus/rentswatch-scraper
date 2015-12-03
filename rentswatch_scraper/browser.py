@@ -40,6 +40,7 @@ def fetch_page(url, throttle=(ENV == 'production'), postdata = None):
     request = urllib2.Request(url, postdata)
     request.add_header('Cache-Control','max-age=0')
     request.add_header('User-Agent', agents[randint(0,len(agents)-1)], )
+    request.add_header('Accept', 'application/json,text/plain,text/html,application/xhtml+xml,application/xml, */*')
     response = urllib2.urlopen(request)
 
     return response.read()
