@@ -41,7 +41,9 @@ class Ad(SQLObject):
     totalRent = FloatCol(default=None)
     totalRentOriginalCurrency = FloatCol(default=None)
     # Country, 2 letter code
-    country = StringCol(length=3, default='EUR')
+    country = StringCol(length=2, default=None)
+    # Currency, 3 letter code
+    currency = StringCol(length=3, default='EUR')
     # Surface in square meters
     livingSpace = FloatCol(default=None)
     # Price per square meter
