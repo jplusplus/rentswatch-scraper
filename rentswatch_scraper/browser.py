@@ -72,7 +72,8 @@ def convert(amount, from_currency):
         "PLN": 0.24,
         "GBP": 1.40,
         "SEK": 0.11,
-        "CHF": 0.920587
+        "CHF": 0.920587,
+        "EUR": 1
     }
 
     try:
@@ -83,7 +84,7 @@ def convert(amount, from_currency):
 
     return amount * currencies[from_currency]
 
-def clean_amounts(totalRent = 0, baseRent = 0, serviceCharge = 0, livingSpace = None):
+def clean_amounts(totalRent=0, baseRent=0, serviceCharge=0, livingSpace=None, currency='EUR'):
 
     baseRent = float(baseRent)
     totalRent = float(totalRent)
@@ -106,11 +107,15 @@ def clean_amounts(totalRent = 0, baseRent = 0, serviceCharge = 0, livingSpace = 
         serviceCharge = None
 
     return {
-        "baseRent": baseRent,
-        "serviceCharge": serviceCharge,
-        "totalRent": totalRent,
+        "baseRent": convert(baseRent, currency),
+        "baseRentOriginalCurrency": baseRent,
+        "serviceCharge": convert(serviceCharge, currency),
+        "serviceChargeOriginalCurrency": serviceCharge,
+        "totalRent": convert(totalRent, currency),
+        "totalRentOriginalCurrency": totalRent,
         "livingSpace": livingSpace,
-        "pricePerSqm": totalRent / livingSpace
+        "pricePerSqm": totalRent / livingSpace,
+        "currency": currency
     }
 
 def geocode(address, country):
