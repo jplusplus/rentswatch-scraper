@@ -26,11 +26,11 @@ class Ad(SQLObject):
     # "listed" if needs more scraping, "scraped" if it's done
     status = StringCol(length=10, default=None)
     # Name of the website
-    site = StringCol(length=30, default=None)
+    site = StringCol(length=30, notNull=True)
     # Date the ad was first scraped
     createdAt = DateTimeCol(default=DateTimeCol.now)
     # The unique ID from the site where it's scrapped from
-    siteId = StringCol(length=100)
+    siteId = StringCol(length=100, notNull=True)
     # Extra costs (heating mostly)
     serviceCharge = FloatCol(default=None)
     serviceChargeOriginalCurrency = FloatCol(default=None)
@@ -41,7 +41,7 @@ class Ad(SQLObject):
     totalRent = FloatCol(default=None)
     totalRentOriginalCurrency = FloatCol(default=None)
     # Country, 2 letter code
-    country = StringCol(length=2, default=None)
+    country = StringCol(length=2, notNull=True)
     # Currency, 3 letter code
     currency = StringCol(length=3, default='EUR')
     # Surface in square meters
