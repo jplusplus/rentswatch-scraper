@@ -226,3 +226,24 @@ redefine in order to have the full control of your scraper behavior.
 +----------------------+------------------------------------------------------------------------------------------------------+
 | ``transform_page``   | Transform HTML content of the series page before parsing it.                                         |
 +----------------------+------------------------------------------------------------------------------------------------------+
+
+
+Start a migration
+-----------------
+
+Use Yoyo_.:
+
+::
+
+    yoyo new ./migrations -m "Your migration's description"
+
+
+And apply it:
+
+::
+
+     yoyo apply --database mysql://user:password@host/db ./migrations
+
+
+
+.. _Yoyo: https://pypi.python.org/pypi/yoyo-migrations
