@@ -92,7 +92,7 @@ class Ad(SQLObject):
     # URL of the page
     sourceUrl = StringCol(length=1000, default=None)
     # URL of the page
-    description = StringCol()
+    description = StringCol(default=None)
     # An ad must be unique on the website
     adIndex = DatabaseIndex('siteId', 'site', unique=True)
 
