@@ -21,6 +21,7 @@ import db
 import socket
 import pprint
 import browser
+import urllib2
 
 class Scraper(object):
 
@@ -134,6 +135,8 @@ class Scraper(object):
             href   = self.get_ad_href(ad_block)
             siteId = self.get_ad_id(ad_block)
             try:
+                # No URL found, no ad to fetch
+                if href is None: continue
                 # Checks that we didn't scan this ad yet
                 if self.is_scraped(siteId) or self.has_issue(siteId):
                     # Raise a duplicate error (which is not saved)
@@ -158,6 +161,8 @@ class Scraper(object):
             content = fetch_page(href)
         except socket.timeout as e:
             raise reporting.TimeoutError(self._meta.country, self._meta.site, siteId)
+        except urllib2.URLError as e:
+            raise reporting.UnreachableError(self._meta.country, self._meta.site, siteId)
         # Ad page soup
         soup = BeautifulSoup(content, 'html.parser')
         # Some fields are present in every ad
