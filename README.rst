@@ -231,7 +231,7 @@ redefine in order to have the full control of your scraper behavior.
 Start a migration
 -----------------
 
-Use Yoyo_.:
+Use Yoyo_:
 
 ::
 
