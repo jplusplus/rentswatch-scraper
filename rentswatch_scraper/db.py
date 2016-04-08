@@ -96,6 +96,18 @@ class Ad(SQLObject):
     # An ad must be unique on the website
     adIndex = DatabaseIndex('siteId', 'site', unique=True)
 
+class Rent(SQLObject):
+    # Total cost
+    totalRent = FloatCol(default=None)
+    # Surface in square meters
+    livingSpace = FloatCol(default=None)
+    # Currency, 3 letter code
+    currency = StringCol(length=3, default='EUR')
+    # Date of arrival
+    moveIn = DateCol(default=None)
+    # Date of creating
+    createdAt = DateTimeCol(default=DateTimeCol.now)
+
 class Report(SQLObject):
     createdAt = DateTimeCol(default=DateTimeCol.now)                            # Date the ad was first scraped
     country = StringCol(length=2, default=None)                                 # Country, 2 letter code
