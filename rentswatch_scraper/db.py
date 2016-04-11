@@ -105,6 +105,8 @@ class Rent(SQLObject):
     currency = StringCol(length=3, default='EUR')
     # Date of arrival
     moveIn = DateCol(default=None)
+    # IP of the user hashed
+    ipHash = StringCol(length=512,default=None)
     # Date of creating
     createdAt = DateTimeCol(default=DateTimeCol.now)
 
