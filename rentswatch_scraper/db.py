@@ -1,6 +1,6 @@
 from sqlobject import connectionForURI, sqlhub, SQLObject, sqlbuilder, \
                       BoolCol, StringCol, UnicodeCol, FloatCol, \
-                      DateTimeCol, DatabaseIndex
+                      DateTimeCol, DateCol, DatabaseIndex
 import os
 
 # Get DATABASE_URL env variable or use sqlite

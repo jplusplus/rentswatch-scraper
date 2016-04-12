@@ -73,8 +73,11 @@ class Scraper(object):
         try:
             # Iterates after several pages
             while self._page < self._max_page and self.dup_count < 20:
-                # Fetch a series of elements
-                self.fetch_series()
+                try:
+                    # Fetch a series of elements
+                    self.fetch_series()
+                except urllib2.HTTPError as e:
+                    print 'Unable to fecth %s' % self.series_url
                 # Next page
                 self._page = self._page + 1
         # Say bye to the user!
