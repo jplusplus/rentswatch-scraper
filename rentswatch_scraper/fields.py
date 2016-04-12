@@ -50,6 +50,33 @@ class RegexField(Field):
             value = self.transform(value)
         return value
 
+class AttributeField(Field):
+
+    def __init__(self, selector='a', name='name', transform=None,
+                required=False, exception=reporting.BogusError):
+        self.selector  = selector
+        self.name      = name
+        self.transform = transform
+        # Call parent constructor
+        super(AttributeField, self).__init__(required, exception)
+
+    def extract(self, soup, values):
+        # Parse page HTML using a selector
+        if self.selector is not None:
+            # Extract the element containing
+            element = soup.select_one(self.selector)
+            # Element not found
+            if element is None: return None
+        # No selector provided the soup might be just text
+        else: element = soup
+        # Get the value from the attributes of the element
+        value = element[self.name]
+        # Should we transform the value afterward?
+        if hasattr(self.transform, '__call__')  and value is not None:
+            # Transforms the value
+            value = self.transform(value)
+        return value
+
 class ComputedField(Field):
     def __init__(self, fn, required=False, exception=reporting.BogusError):
         # The function called to cumputte this field

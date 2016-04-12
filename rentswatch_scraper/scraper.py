@@ -11,7 +11,7 @@
 from .browser import fetch_page, clean_amounts, geocode, regex as fast_regex
 from .db import Ad, Report
 
-from .fields import Field, RegexField, ComputedField
+from .fields import Field
 
 from bs4 import BeautifulSoup
 from sqlobject import AND, OR
