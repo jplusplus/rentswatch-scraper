@@ -185,7 +185,9 @@ class Scraper(object):
             values = {k: v for k, v in values.iteritems() if not k[:1] == '_' }
             # Builds and returns the ad
             return Ad(**values), values
-        except (formencode.Invalid, ValueError,):
+        except (formencode.Invalid, ValueError,) as e:
+            # Print out the invalid error
+            if self._debug: self._pp.pprint(e)
             raise reporting.InvalidError(self._meta.country, self._meta.site, siteId)
 
     def extract_ad(self, soup, siteId=None):
