@@ -176,16 +176,16 @@ class Scraper(object):
             site=self._meta.site,
             sourceUrl=href
         )
-        # A dictionnary of every saved value
-        values = self.extract_ad(soup, siteId)
-        # Merge both dictionnary
-        values.update(defaultFields)
-        # Remove virtual values (key starting by _)
-        values = {k: v for k, v in values.iteritems() if not k[:1] == '_' }
         try:
+            # A dictionnary of every saved value
+            values = self.extract_ad(soup, siteId)
+            # Merge both dictionnary
+            values.update(defaultFields)
+            # Remove virtual values (key starting by _)
+            values = {k: v for k, v in values.iteritems() if not k[:1] == '_' }
             # Builds and returns the ad
             return Ad(**values), values
-        except formencode.Invalid, e:
+        except (formencode.Invalid, ValueError,):
             raise reporting.InvalidError(self._meta.country, self._meta.site, siteId)
 
     def extract_ad(self, soup, siteId=None):
