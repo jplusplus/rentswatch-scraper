@@ -57,10 +57,15 @@ class UnreachableError(ReportError):
         self.name = 'unreachable'
         ReportError.__init__(self, country, site, siteId)
 
+class InvalidError(ReportError):
+    def __init__(self, country, site, siteId):
+        self.name = 'invalid'
+        ReportError.__init__(self, country, site, siteId)
+
 # To quickly catch all reportable errors
 REPORTABLE_ERRORS = (DuplicateError, BogusError, WrongtypeError,
-                    SpaceMissingError, RentMissingError,
-                    TimeoutError, UnreachableError)
+                    SpaceMissingError, RentMissingError, InvalidError,
+                    TimeoutError, UnreachableError,)
 
 def report(country, site, siteId, name):
     # Check the validity of the report name

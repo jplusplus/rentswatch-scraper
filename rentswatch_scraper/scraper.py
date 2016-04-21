@@ -22,6 +22,7 @@ import socket
 import pprint
 import browser
 import urllib2
+import formencode
 
 class Scraper(object):
 
@@ -181,8 +182,11 @@ class Scraper(object):
         values.update(defaultFields)
         # Remove virtual values (key starting by _)
         values = {k: v for k, v in values.iteritems() if not k[:1] == '_' }
-        # Builds and returns the ad
-        return Ad(**values), values
+        try:
+            # Builds and returns the ad
+            return Ad(**values), values
+        except formencode.Invalid, e:
+            raise reporting.InvalidError(self._meta.country, self._meta.site, siteId)
 
     def extract_ad(self, soup, siteId=None):
         # A dictionnary of every saved value
