@@ -80,7 +80,6 @@ def convert(amount, from_currency):
     try:
         amount = float(amount)
     except (ValueError, TypeError):
-        print "Invalid amount"
         return False
 
     return amount * currencies[from_currency]
