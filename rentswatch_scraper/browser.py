@@ -74,6 +74,7 @@ def convert(amount, from_currency):
         "SEK": 0.11,
         "CHF": 0.920587,
         "HUF": 0.0032,
+        "BRL": 0.25,
         "EUR": 1
     }
 
