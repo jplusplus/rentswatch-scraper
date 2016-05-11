@@ -70,7 +70,11 @@ class AttributeField(Field):
         # No selector provided the soup might be just text
         else: element = soup
         # Get the value from the attributes of the element
-        value = element[self.name]
+        try: 
+            value = element[self.name]
+        # There is no such key in the element
+        except KeyError:
+            value = None
         # Should we transform the value afterward?
         if hasattr(self.transform, '__call__')  and value is not None:
             # Transforms the value
