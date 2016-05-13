@@ -75,6 +75,7 @@ def convert(amount, from_currency):
         "CHF": 0.920587,
         "HUF": 0.0032,
         "BRL": 0.25,
+        "VND": 0.000039,
         "EUR": 1
     }
 
