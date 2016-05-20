@@ -81,6 +81,49 @@ class AttributeField(Field):
             value = self.transform(value)
         return value
 
+class JsonField(Field):
+
+    def __init__(self, selector=None, transform=None,
+                required=False, exception=reporting.BogusError):
+        self.selector  = selector
+        self.transform = transform
+        # Call parent constructor
+        super(JsonField, self).__init__(required, exception)
+
+    def extract(self, soup, values):
+        # Parse JSON
+        json_data = simplejson.loads(str(soup).strip())
+        # Finds and return the element
+        if self.selector is not None:
+            # Split the json selectors
+            json_selectors = self.selector.split(".")
+            # Creates an intermediary variable upon which to iterate
+            json_focus = json_data
+            json_count = 0
+            for json_selector in json_selectors:
+                try: 
+                    json_focus = json_focus[json_selector]
+                    json_count += 1
+                    # If this is the last JSON selector
+                    if json_count == len(json_selectors):
+                        value = str(json_focus).encode('utf-8')
+                        if value == "":
+                            value = None
+                except KeyError:
+                    # Selector not found
+                    value = None
+        else:
+            return None
+        # Strip extracted values
+        value = value.strip() if isinstance(value, str) else value
+        if hasattr(self.transform, '__call__'):
+            # Transforms the value
+            try:
+                value = self.transform(value)
+            except TypeError:
+                value = None
+        return value
+
 class ComputedField(Field):
     def __init__(self, fn, required=False, exception=reporting.BogusError):
         # The function called to cumputte this field
