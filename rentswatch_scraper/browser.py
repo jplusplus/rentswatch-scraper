@@ -117,7 +117,7 @@ def clean_amounts(totalRent=0, baseRent=0, serviceCharge=0, livingSpace=None, cu
         "totalRent": convert(totalRent, currency),
         "totalRentOriginalCurrency": totalRent,
         "livingSpace": livingSpace,
-        "pricePerSqm": convert(totalRent, currency) / livingSpace,
+        "pricePerSqm": convert(baseRent, currency) / livingSpace,
         "currency": currency
     }
 
