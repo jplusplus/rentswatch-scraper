@@ -33,6 +33,7 @@ class Scraper(object):
         site     = ''
         baseUrl  = ''
         listUrl  = ''
+        dupMax   = 20
         # CSS selector to retreive an ad's block
         adBlockSelector = '.detail-page-link'
 
@@ -73,7 +74,7 @@ class Scraper(object):
     def run(self):
         try:
             # Iterates after several pages
-            while self._page < self._max_page and self.dup_count < 20:
+            while self._page < self._max_page and self.dup_count < self._meta.dupMax:
                 try:
                     # Fetch a series of elements
                     self.fetch_series()
