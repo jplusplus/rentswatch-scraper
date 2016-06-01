@@ -3,6 +3,7 @@ from .browser import regex as fast_regex
 import itertools
 import abc
 import reporting
+import simplejson as simplejson
 
 class Field(object):
     __metaclass__ = abc.ABCMeta
@@ -70,7 +71,7 @@ class AttributeField(Field):
         # No selector provided the soup might be just text
         else: element = soup
         # Get the value from the attributes of the element
-        try: 
+        try:
             value = element[self.name]
         # There is no such key in the element
         except KeyError:
@@ -101,7 +102,7 @@ class JsonField(Field):
             json_focus = json_data
             json_count = 0
             for json_selector in json_selectors:
-                try: 
+                try:
                     json_focus = json_focus[json_selector]
                     json_count += 1
                     # If this is the last JSON selector

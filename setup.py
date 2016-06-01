@@ -42,7 +42,8 @@ setup(
         'SQLObject==2.1.2',
         'beautifulsoup4==4.4.0',
         'requests==2.2.1',
-        'MySQL-python==1.2.3'
+        'MySQL-python==1.2.3',
+        'simplejson==3.8.2'
     ],
     extras_require={
         'tests': [],
